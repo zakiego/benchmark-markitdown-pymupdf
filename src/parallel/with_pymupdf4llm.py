@@ -1,22 +1,25 @@
+import pymupdf4llm
 import pymupdf
 from multiprocessing import Pool
 
-pdf_path = "src/files/18779-pdf.pdf"
-# pdf_path = "src/files/43006-pdf.pdf"
+import pymupdf4llm.helpers
+
+pdf_path = "src/files/43006-pdf.pdf"
 
 
 def process_page_range(args):
     """Process a range of pages from a PDF"""
     start, end = args
-    doc = pymupdf.open(pdf_path)
+    # Only load the specific pages we need using the pages parameter
+    doc = pymupdf4llm.to_markdown(pdf_path, pages=[i for i in range(start, end)])
     text = ""
-    for page_num in range(start, end):
-        text += doc[page_num].get_text()
-    doc.close()
+    for page in doc:
+        text += page
     return text
 
 
 def main():
+    # First get total pages using PyMuPDF directly
     doc = pymupdf.open(pdf_path)
     total_pages = len(doc)
     doc.close()
@@ -35,6 +38,11 @@ def main():
         results = pool.map(process_page_range, page_ranges)
 
     text = "".join(results)
+
+    # Save output to file
+    output_file = "src/parallel/output_pymupdf4llm.txt"
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write(text)
 
     return text
 

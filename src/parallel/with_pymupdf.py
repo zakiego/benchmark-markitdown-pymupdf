@@ -1,8 +1,7 @@
 import pymupdf
 from multiprocessing import Pool
 
-pdf_path = "src/files/18779-pdf.pdf"
-# pdf_path = "src/files/43006-pdf.pdf"
+pdf_path = "src/files/43006-pdf.pdf"
 
 
 def process_page_range(args):
@@ -35,6 +34,11 @@ def main():
         results = pool.map(process_page_range, page_ranges)
 
     text = "".join(results)
+
+    # Save output to file
+    output_file = "src/parallel/output_pymupdf.txt"
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write(text)
 
     return text
 

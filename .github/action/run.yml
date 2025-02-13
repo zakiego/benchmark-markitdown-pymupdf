@@ -1,0 +1,35 @@
+name: Run Benchmarks
+
+jobs:
+  uv-example:
+    name: python
+    runs-on: ubuntu-latesta
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Install hyperfine
+        run: |
+          wget https://github.com/sharkdp/hyperfine/releases/download/v1.19.0/hyperfine_1.19.0_amd64.deb
+          sudo dpkg -i hyperfine_1.19.0_amd64.deb
+
+      - name: Run benchmarks (serial)
+        run: |
+          hyperfine --warmup 3 --prepare true --runs 10 \
+            'uv run src/serial/with_pdfminer.py' \
+            'uv run src/serial/with_pymupdf.py' \
+            'uv run src/serial/with_pymupdf4llm.py' \
+            'uv run src/serial/with_markitdown.py'
+
+      - name: Run benchmarks (parallel)
+        run: |
+          hyperfine --warmup 3 --prepare true --runs 10 \
+            'uv run src/parallel/with_pymupdf.py' \
+            'uv run src/parallel/with_pymupdf4llm.py' \
+            'uv run src/parallel/with_pdfminer.py'
