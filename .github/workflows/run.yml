@@ -1,5 +1,9 @@
 name: Run Benchmarks
 
+on:
+  push:
+  workflow_dispatch:
+
 jobs:
   uv-example:
     name: python
