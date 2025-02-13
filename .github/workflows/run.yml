@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  uv-example:
+  run-benchmarks:
     name: python
-    runs-on: ubuntu-latesta
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
