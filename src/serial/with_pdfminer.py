@@ -25,7 +25,7 @@ def main():
     output_string.close()
 
     # Save output to file
-    output_file = "src/parallel/output_pdfminer.txt"
+    output_file = "src/serial/output_pdfminer.txt"
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(text)
 
