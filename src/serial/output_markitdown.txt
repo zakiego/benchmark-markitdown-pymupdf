@@ -5554,11 +5554,11 @@ tensor, the components Sik of which are tabulated in the following
 
 pi = ρEi = E
 
-∂E3
-∂x3
-
 ∂E2
 ∂x2
+
+∂E3
+∂x3
 
 +
 
