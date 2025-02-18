@@ -1,0 +1,8 @@
+Benchmark,Type,Mean (s),Std Dev (s),User (s),System (s),Min (s),Max (s),Runs
+uv run src/serial/with_pdfminer.py,serial,6.439,0.124,6.340,0.044,6.272,6.664,10
+uv run src/serial/with_pymupdf.py,serial,0.7868,0.0032,0.6443,0.1399,0.7821,0.7906,10
+uv run src/serial/with_pymupdf4llm.py,serial,30.299,0.520,27.909,2.173,29.783,31.412,10
+uv run src/serial/with_markitdown.py,serial,6.920,0.091,6.773,0.105,6.813,7.115,10
+uv run src/parallel/with_pymupdf.py,parallel,0.4500,0.0069,1.8937,0.4033,0.4386,0.4615,10
+uv run src/parallel/with_pymupdf4llm.py,parallel,12.229,0.786,67.247,9.446,10.724,13.019,10
+uv run src/parallel/with_pdfminer.py,parallel,2.578,0.045,16.587,0.386,2.533,2.692,10
