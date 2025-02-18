@@ -24,7 +24,7 @@ def main():
     total_pages = len(doc)
     doc.close()
 
-    num_processes = 8  # Test with different values (2, 4, 8)
+    num_processes = 16  # Test with different values (2, 4, 8)
     page_ranges = []
     chunk_size = total_pages // num_processes
 

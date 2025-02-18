@@ -37,7 +37,7 @@ def main():
         doc = PDFDocument(parser)
         total_pages = sum(1 for _ in PDFPage.create_pages(doc))
 
-    num_processes = 8  # Test with different values (2, 4, 8)
+    num_processes = 16  # Test with different values (2, 4, 8)
     page_ranges = []
     chunk_size = total_pages // num_processes
 
